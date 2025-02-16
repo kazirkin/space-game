@@ -215,6 +215,20 @@ function createMeteor() {
             }
         });
 
+        // Столкновение с игроком
+        if (isColliding(meteor, player)) {
+            lives--; // Отнимаем жизнь
+            livesDisplay.textContent = `❤️ Жизни: ${lives}`;
+            meteor.remove();
+
+            if (lives <= 0) {
+                alert("Ты проиграл! Очки: " + score);
+                location.reload();
+            }
+        }
+    }, 50);
+}
+
      
 ```
 
@@ -227,18 +241,12 @@ function createMeteor() {
 
 ## 7. Добавляем столкновения и очки
 ```js
-          // Столкновение с игроком
-        if (isColliding(meteor, player)) {
-            lives--; // Отнимаем жизнь
-            livesDisplay.textContent = `❤️ Жизни: ${lives}`;
-            meteor.remove();
 
-            if (lives <= 0) {
-                alert("Ты проиграл! Очки: " + score);
-                location.reload();
-            }
-        }
-    }, 50);
+
+// Функция взрыва метеорита
+function explode(meteor) {
+    meteor.style.backgroundColor = "yellow";
+    setTimeout(() => meteor.remove(), 300);
 }
 
 // Проверка столкновений
@@ -265,7 +273,8 @@ function isColliding(a, b) {
 
 ## 8. Добавляем усложнение по мере игры
 ```js
-     function increaseDifficulty() {
+ // Функция усложнения игры
+function increaseDifficulty() {
     if (score % 5 === 0) { // Каждые 5 очков игра усложняется
         meteorSpeed += 1;
         if (meteorInterval > 500) {
