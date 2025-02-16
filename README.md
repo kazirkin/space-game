@@ -144,7 +144,7 @@ document.addEventListener("keydown", (event) => {
 
 ---
 
-## 5. Создаём лазеры и метеориты
+## 5. Создаём лазеры 
 ```js
 
 // Создание выстрела (лазера)
@@ -215,12 +215,7 @@ function createMeteor() {
             }
         });
 
-// Функция взрыва метеорита
-function explode(meteor) {
-    meteor.style.backgroundColor = "yellow";
-    setTimeout(() => meteor.remove(), 300);
-}
-
+     
 ```
 
 ### Разбор кода:
@@ -232,7 +227,7 @@ function explode(meteor) {
 
 ## 7. Добавляем столкновения и очки
 ```js
-       // Столкновение с игроком
+          // Столкновение с игроком
         if (isColliding(meteor, player)) {
             lives--; // Отнимаем жизнь
             livesDisplay.textContent = `❤️ Жизни: ${lives}`;
